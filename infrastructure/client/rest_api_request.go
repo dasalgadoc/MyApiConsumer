@@ -8,6 +8,7 @@ import (
 	"myApiController/domain/model"
 	"net/http"
 	"regexp"
+	"time"
 )
 
 const INNER_VARAIBLE = `\{(\w+)\}`
@@ -59,6 +60,7 @@ func (e *RestApi) DoRequest(params map[string]string, bodyStr string) (domain.Da
 	req.Header = e.headers
 
 	var response model.ApiResponse
+	startTime := time.Now()
 	resp, err := e.HttpClient.Do(req)
 	if err != nil {
 		return response, err
@@ -74,6 +76,10 @@ func (e *RestApi) DoRequest(params map[string]string, bodyStr string) (domain.Da
 	if err != nil {
 		return response, err
 	}
+
+	endTime := time.Now()
+	elapsedTime := endTime.Sub(startTime).Seconds()
+	response["api_consumer_elapsed_time"] = elapsedTime
 
 	return response, nil
 }
