@@ -13,7 +13,7 @@
 
 ### 🛠️ Needed tools
 
-1. Go 1.18 or higher
+1. Go 1.20 (recommended)
 
 ### 🏃🏻 Application execution
 
@@ -80,9 +80,25 @@ go run main.go
 ```
 7. You'll see various errors since not enough parameters were provided; the correct form is as follows.
 ```bash
-go run main.go <INPUT FILE TYPE> <OUTPUT FILE TYPE> <DATA SOURCE>
+go run main.go <DATA SOURCE>
+```
+This project use the following [flags](https://pkg.go.dev/flag):
+- __inputter__: Input file type (_default "csv"_)
+- __outputter__: Output file type (_default "json"_)
+
+__Note__: No more clients are specified, but this code is extensible.
+
+Thats why you don't need to specify the flags, but you can if you want to change the default values.
+
+```bash
+go run main.go -inputter <INPUT FILE TYPE> -outputter <OUTPUT FILE TYPE> <DATA SOURCE>
 ```
 For instance:
 ```bash
-go run main.go csv json api-engine 
+go run main.go api_engine_beta
+```
+or 
+
+```bash
+go run main.go -inputter csv -outputter json api_engine_beta 
 ```

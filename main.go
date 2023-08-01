@@ -1,10 +1,10 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"myApiController/cmd/application"
 	"myApiController/configs"
-	"os"
 )
 
 // registered
@@ -13,31 +13,32 @@ var (
 )
 
 func main() {
-	args := os.Args[1:]
-	if len(args) < 3 {
-		panic("no enough params")
-	}
+	inputter := flag.String("inputter", "csv", "Inputter type")
+	outputter := flag.String("outputter", "json", "Outputter type")
+	flag.Parse()
 
-	inputter := args[0]
-	if !application.CheckArgumentOnSlice(inputter, IOsType) {
+	if !application.CheckArgumentOnSlice(*inputter, IOsType) {
 		panic(fmt.Errorf("invalid inputter, the valid types are %+v", IOsType))
 	}
 
-	outputter := args[1]
-	if !application.CheckArgumentOnSlice(outputter, IOsType) {
+	if !application.CheckArgumentOnSlice(*outputter, IOsType) {
 		panic(fmt.Errorf("invalid outputter, the valid types are %+v", IOsType))
 	}
 
-	client := args[2]
+	args := flag.Args()
+	if len(args) < 1 {
+		panic("no client provided")
+	}
+	client := &args[0]
 
-	var app = application.BuildApplication(inputter, outputter, client)
+	var app = application.BuildApplication(*inputter, *outputter, *client)
 
 	registeredClientsNames := app.AppConfig.GetRegisteredClientsNames()
-	if !application.CheckArgumentOnSlice(client, registeredClientsNames) {
+	if !application.CheckArgumentOnSlice(*client, registeredClientsNames) {
 		panic(fmt.Errorf("invalid client, the valid types are %+v", registeredClientsNames))
 	}
 
 	fmt.Printf("...Running request from (%s), recovery data from (%s) and writing to (%s)\n",
-		client, inputter, outputter)
+		*client, *inputter, *outputter)
 	app.DataProcessor.Do()
 }
