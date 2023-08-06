@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
-	"myApiController/domain"
-	"myApiController/domain/model"
+	domain2 "myApiController/internal/domain"
+	"myApiController/internal/domain/model"
 	"net/http"
 	"regexp"
 	"time"
@@ -20,7 +20,7 @@ type RestApi struct {
 	httpMethod string
 }
 
-func NewRestApi(path, httpMethod string, headers map[string]string, httpClient http.Client) domain.DataRowClient {
+func NewRestApi(path, httpMethod string, headers map[string]string, httpClient http.Client) domain2.DataRowClient {
 	header := http.Header{}
 	for key, value := range headers {
 		header.Add(key, value)
@@ -34,7 +34,7 @@ func NewRestApi(path, httpMethod string, headers map[string]string, httpClient h
 	}
 }
 
-func (e *RestApi) DoRequest(params map[string]string, bodyStr string) (domain.DataExchange, error) {
+func (e *RestApi) DoRequest(params map[string]string, bodyStr string) (domain2.DataExchange, error) {
 	var (
 		err error
 		req *http.Request

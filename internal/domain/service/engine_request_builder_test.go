@@ -2,7 +2,7 @@ package service
 
 import (
 	"github.com/stretchr/testify/assert"
-	"myApiController/domain/model"
+	"myApiController/internal/domain/model"
 	"testing"
 )
 

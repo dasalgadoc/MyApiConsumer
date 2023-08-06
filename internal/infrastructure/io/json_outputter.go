@@ -2,18 +2,18 @@ package io
 
 import (
 	"encoding/json"
-	"myApiController/domain"
+	domain2 "myApiController/internal/domain"
 	"os"
 	"time"
 )
 
 type jsonOutputter struct{}
 
-func NewJsonOutputter() domain.DataOutputter {
+func NewJsonOutputter() domain2.DataOutputter {
 	return &jsonOutputter{}
 }
 
-func (c *jsonOutputter) Write(location string, rows []domain.DataExchange) error {
+func (c *jsonOutputter) Write(location string, rows []domain2.DataExchange) error {
 	file, err := os.Create(location)
 	if err != nil {
 		return err

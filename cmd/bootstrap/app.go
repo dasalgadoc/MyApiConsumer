@@ -2,9 +2,9 @@ package bootstrap
 
 import (
 	"fmt"
-	"myApiController/application"
 	"myApiController/cmd/configs"
-	"myApiController/domain"
+	"myApiController/internal/application"
+	domain2 "myApiController/internal/domain"
 	"os"
 )
 
@@ -52,15 +52,15 @@ func getConfiguration() configs.Config {
 	return appConfig
 }
 
-func buildInputter(iType string) (domain.DataInputter, error) {
+func buildInputter(iType string) (domain2.DataInputter, error) {
 	return GetDataInputter(iType)
 }
 
-func buildOutputter(oType string) (domain.DataOutputter, error) {
+func buildOutputter(oType string) (domain2.DataOutputter, error) {
 	return GetDataOutputter(oType)
 }
 
-func buildClients(cType string, c configs.Config) (domain.DataRowClient, error) {
+func buildClients(cType string, c configs.Config) (domain2.DataRowClient, error) {
 	var client configs.Client
 	for _, cli := range c.Clients {
 		if cType == cli.Name {

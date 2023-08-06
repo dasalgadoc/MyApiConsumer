@@ -2,7 +2,7 @@ package mocks
 
 import (
 	"github.com/stretchr/testify/mock"
-	"myApiController/domain"
+	"myApiController/internal/domain"
 )
 
 type DataOutputterMock struct {

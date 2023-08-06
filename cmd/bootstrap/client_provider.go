@@ -3,8 +3,8 @@ package bootstrap
 import (
 	"fmt"
 	"myApiController/cmd/configs"
-	"myApiController/domain"
-	infrastructure "myApiController/infrastructure/client"
+	"myApiController/internal/domain"
+	infrastructure "myApiController/internal/infrastructure/client"
 	"net/http"
 	"time"
 )

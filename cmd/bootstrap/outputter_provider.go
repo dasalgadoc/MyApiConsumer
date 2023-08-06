@@ -3,8 +3,8 @@ package bootstrap
 import (
 	"fmt"
 	"myApiController/cmd/configs"
-	"myApiController/domain"
-	"myApiController/infrastructure/io"
+	"myApiController/internal/domain"
+	"myApiController/internal/infrastructure/io"
 )
 
 var outputter = map[string]func() (domain.DataOutputter, error){

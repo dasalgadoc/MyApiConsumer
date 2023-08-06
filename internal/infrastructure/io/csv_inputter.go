@@ -2,7 +2,7 @@ package io
 
 import (
 	"encoding/csv"
-	"myApiController/domain"
+	"myApiController/internal/domain"
 	"os"
 )
 

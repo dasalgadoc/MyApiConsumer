@@ -4,20 +4,20 @@ import (
 	"fmt"
 	"github.com/schollz/progressbar/v3"
 	"myApiController/cmd/configs"
-	"myApiController/domain"
+	domain2 "myApiController/internal/domain"
 )
 
 type DataProcessor struct {
 	config    configs.Config
-	inputter  domain.DataInputter
-	outputter domain.DataOutputter
-	rowClient domain.DataRowClient
+	inputter  domain2.DataInputter
+	outputter domain2.DataOutputter
+	rowClient domain2.DataRowClient
 }
 
 func NewDataProcessor(c configs.Config,
-	i domain.DataInputter,
-	o domain.DataOutputter,
-	r domain.DataRowClient) DataProcessor {
+	i domain2.DataInputter,
+	o domain2.DataOutputter,
+	r domain2.DataRowClient) DataProcessor {
 	return DataProcessor{
 		config:    c,
 		inputter:  i,
@@ -43,8 +43,8 @@ func (dp *DataProcessor) Do() {
 	fmt.Println("...Data was wrote successfully")
 }
 
-func (dp *DataProcessor) getDataFromRegisteredClient(data domain.Table) []domain.DataExchange {
-	dataReturned := []domain.DataExchange{}
+func (dp *DataProcessor) getDataFromRegisteredClient(data domain2.Table) []domain2.DataExchange {
+	dataReturned := []domain2.DataExchange{}
 	progressBar := progressbar.Default(int64(len(data.Rows)))
 	for _, row := range data.Rows {
 		var jsonBody string

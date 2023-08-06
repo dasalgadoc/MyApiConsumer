@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	"io"
-	"myApiController/domain"
+	domain2 "myApiController/internal/domain"
 	"net/http"
 	"strings"
 	"testing"
@@ -19,11 +19,11 @@ const (
 
 type restApiTestScenario struct {
 	test        *testing.T
-	client      domain.DataRowClient
+	client      domain2.DataRowClient
 	mockClient  http.Client
 	params      map[string]string
 	bodyStr     string
-	result      domain.DataExchange
+	result      domain2.DataExchange
 	err         error
 	expectedErr error
 }

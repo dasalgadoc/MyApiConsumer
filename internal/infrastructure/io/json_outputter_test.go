@@ -2,7 +2,7 @@ package io
 
 import (
 	"github.com/stretchr/testify/assert"
-	"myApiController/domain"
+	domain2 "myApiController/internal/domain"
 	"testing"
 )
 
@@ -10,24 +10,24 @@ type jsonOutputterTestScenario struct {
 	test       *testing.T
 	folderPath string
 	filename   string
-	rows       []domain.DataExchange
+	rows       []domain2.DataExchange
 	err        error
 	outputter  jsonOutputter
-	generic    domain.DataOutputter
+	generic    domain2.DataOutputter
 }
 
 func TestCreateFileFailed(t *testing.T) {
 	s := startJsonOutputterTestScenario(t)
 	s.givenALocation("/dev/null/")
-	s.andInputStruct([]domain.DataExchange{"one"})
+	s.andInputStruct([]domain2.DataExchange{"one"})
 	s.whenJsonWriting()
 	s.thenThereIsAnErrorNoValidateText()
 }
 
 func TestFileOutputOk(t *testing.T) {
 	s := startJsonOutputterTestScenario(t)
-	s.givenALocation("../../test/")
-	s.andInputStruct([]domain.DataExchange{"one"})
+	s.givenALocation("../../../test/")
+	s.andInputStruct([]domain2.DataExchange{"one"})
 	s.whenJsonWriting()
 	s.thenThereIsNoError()
 }
@@ -56,7 +56,7 @@ func (j *jsonOutputterTestScenario) givenALocation(location string) {
 	j.folderPath = location + j.outputter.OutputterFilename()
 }
 
-func (j *jsonOutputterTestScenario) andInputStruct(rows []domain.DataExchange) {
+func (j *jsonOutputterTestScenario) andInputStruct(rows []domain2.DataExchange) {
 	j.rows = rows
 }
 

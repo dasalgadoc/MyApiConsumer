@@ -1,6 +1,8 @@
 package service
 
-import "myApiController/domain/model"
+import (
+	"myApiController/internal/domain/model"
+)
 
 type EngineRequestBuilder struct {
 	request model.EngineRequest
