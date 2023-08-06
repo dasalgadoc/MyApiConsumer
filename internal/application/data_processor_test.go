@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/mock"
 	"myApiController/cmd/configs"
 	"myApiController/internal/domain"
-	"myApiController/test/mocks"
+	mocks2 "myApiController/internal/test/mocks"
 	"testing"
 )
 
@@ -22,9 +22,9 @@ type dataProcessorTestScenario struct {
 	test          *testing.T
 	function      func()
 	configMock    configs.Config
-	inputterMock  mocks.DataInputterMock
-	outputterMock mocks.DataOutputterMock
-	rowClientMock mocks.DataRowClientMock
+	inputterMock  mocks2.DataInputterMock
+	outputterMock mocks2.DataOutputterMock
+	rowClientMock mocks2.DataRowClientMock
 }
 
 func TestDataProcessorOK(t *testing.T) {

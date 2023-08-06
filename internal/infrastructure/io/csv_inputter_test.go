@@ -27,7 +27,7 @@ func TestFailedOpenedFile(t *testing.T) {
 
 func TestEmptyInputFile(t *testing.T) {
 	s := startCsvInputterTestScenario(t)
-	s.givenAnFileLocation("../../../test/empty_input.csv")
+	s.givenAnFileLocation("../../test/empty_input.csv")
 	s.andExpectedError(fmt.Errorf("EOF"))
 	s.whenCsvInputterIsInvoked()
 	s.thenThereIsAnError()
@@ -35,7 +35,7 @@ func TestEmptyInputFile(t *testing.T) {
 
 func TestOnlyHeadersInputFile(t *testing.T) {
 	s := startCsvInputterTestScenario(t)
-	s.givenAnFileLocation("../../../test/only_headers_input.csv")
+	s.givenAnFileLocation("../../test/only_headers_input.csv")
 	s.whenCsvInputterIsInvoked()
 	s.thenThereIsNoError()
 }

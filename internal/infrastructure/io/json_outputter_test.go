@@ -26,7 +26,7 @@ func TestCreateFileFailed(t *testing.T) {
 
 func TestFileOutputOk(t *testing.T) {
 	s := startJsonOutputterTestScenario(t)
-	s.givenALocation("../../../test/")
+	s.givenALocation("../../test/")
 	s.andInputStruct([]domain2.DataExchange{"one"})
 	s.whenJsonWriting()
 	s.thenThereIsNoError()
