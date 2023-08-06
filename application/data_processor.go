@@ -3,7 +3,7 @@ package application
 import (
 	"fmt"
 	"github.com/schollz/progressbar/v3"
-	"myApiController/configs"
+	"myApiController/cmd/configs"
 	"myApiController/domain"
 )
 

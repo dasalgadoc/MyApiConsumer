@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"myApiController/configs"
+	"myApiController/cmd/configs"
 	"myApiController/domain"
 	"myApiController/test/mocks"
 	"testing"

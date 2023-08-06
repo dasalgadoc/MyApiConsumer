@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"myApiController/cmd/application"
-	"myApiController/configs"
+	bootstrap "myApiController/cmd/bootstrap"
+	"myApiController/cmd/configs"
 )
 
 // registered
@@ -17,11 +17,11 @@ func main() {
 	outputter := flag.String("outputter", "json", "Outputter type")
 	flag.Parse()
 
-	if !application.CheckArgumentOnSlice(*inputter, IOsType) {
+	if !bootstrap.CheckArgumentOnSlice(*inputter, IOsType) {
 		panic(fmt.Errorf("invalid inputter, the valid types are %+v", IOsType))
 	}
 
-	if !application.CheckArgumentOnSlice(*outputter, IOsType) {
+	if !bootstrap.CheckArgumentOnSlice(*outputter, IOsType) {
 		panic(fmt.Errorf("invalid outputter, the valid types are %+v", IOsType))
 	}
 
@@ -31,10 +31,10 @@ func main() {
 	}
 	client := &args[0]
 
-	var app = application.BuildApplication(*inputter, *outputter, *client)
+	var app = bootstrap.BuildApplication(*inputter, *outputter, *client)
 
 	registeredClientsNames := app.AppConfig.GetRegisteredClientsNames()
-	if !application.CheckArgumentOnSlice(*client, registeredClientsNames) {
+	if !bootstrap.CheckArgumentOnSlice(*client, registeredClientsNames) {
 		panic(fmt.Errorf("invalid client, the valid types are %+v", registeredClientsNames))
 	}
 

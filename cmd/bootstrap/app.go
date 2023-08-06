@@ -1,12 +1,11 @@
-package application
+package bootstrap
 
 import (
 	"fmt"
 	"myApiController/application"
-	"myApiController/cmd/builders"
-	"myApiController/cmd/providers"
-	"myApiController/configs"
+	"myApiController/cmd/configs"
 	"myApiController/domain"
+	"os"
 )
 
 type (
@@ -39,13 +38,14 @@ func BuildApplication(inputterType, outputterType, clientType string) *Applicati
 	fmt.Printf("...Client generated %+v\n", client)
 
 	return &Application{
-		DataProcessor: builders.BuildDataProcessor(appConfig, inputter, outputter, client),
+		DataProcessor: BuildDataProcessor(appConfig, inputter, outputter, client),
 		AppConfig:     appConfig,
 	}
 }
 
 func getConfiguration() configs.Config {
-	appConfig, err := configs.LoadConfig("./configs/config.yaml")
+	fmt.Println(os.Getwd())
+	appConfig, err := configs.LoadConfig("./cmd/configs/config.yaml")
 	if err != nil {
 		panic(fmt.Errorf("error getting configuration: %w", err))
 	}
@@ -53,11 +53,11 @@ func getConfiguration() configs.Config {
 }
 
 func buildInputter(iType string) (domain.DataInputter, error) {
-	return providers.GetDataInputter(iType)
+	return GetDataInputter(iType)
 }
 
 func buildOutputter(oType string) (domain.DataOutputter, error) {
-	return providers.GetDataOutputter(oType)
+	return GetDataOutputter(oType)
 }
 
 func buildClients(cType string, c configs.Config) (domain.DataRowClient, error) {
@@ -67,5 +67,5 @@ func buildClients(cType string, c configs.Config) (domain.DataRowClient, error) 
 			client = cli
 		}
 	}
-	return providers.GetDataRowClient(client)
+	return GetDataRowClient(client)
 }

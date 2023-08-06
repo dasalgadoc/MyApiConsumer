@@ -1,8 +1,8 @@
-package builders
+package bootstrap
 
 import (
 	"myApiController/application"
-	"myApiController/configs"
+	"myApiController/cmd/configs"
 	"myApiController/domain"
 )
 

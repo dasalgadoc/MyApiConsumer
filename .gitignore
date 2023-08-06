@@ -1,5 +1,5 @@
 .idea
-configs/config.yaml
+config.yaml
 file_exchange
 test/output_*
 .DS_Store

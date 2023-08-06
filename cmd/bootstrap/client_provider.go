@@ -1,8 +1,8 @@
-package providers
+package bootstrap
 
 import (
 	"fmt"
-	"myApiController/configs"
+	"myApiController/cmd/configs"
 	"myApiController/domain"
 	infrastructure "myApiController/infrastructure/client"
 	"net/http"
