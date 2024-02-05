@@ -6,10 +6,11 @@ import (
 )
 
 const (
-	Resource_GetRestApi  = "GetRestApi"
-	Resource_PostRestApi = "PostRestApi"
-	CsvIoType            = "csv"
-	JsonIoType           = "json"
+	Resource_GetRestApi    = "GetRestApi"
+	Resource_PostRestApi   = "PostRestApi"
+	Resource_DeleteRestApi = "DeleteRestApi"
+	CsvIoType              = "csv"
+	JsonIoType             = "json"
 )
 
 type Config struct {

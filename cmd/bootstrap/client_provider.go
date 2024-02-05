@@ -10,8 +10,9 @@ import (
 )
 
 var clients = map[string]func(c configs.Client) (domain.DataRowClient, error){
-	configs.Resource_GetRestApi:  buildHttpGetRestClient,
-	configs.Resource_PostRestApi: buildHttpPostRestClient,
+	configs.Resource_GetRestApi:    buildHttpGetRestClient,
+	configs.Resource_PostRestApi:   buildHttpPostRestClient,
+	configs.Resource_DeleteRestApi: buildHttpDeleteRestClient,
 }
 
 func GetDataRowClient(c configs.Client) (domain.DataRowClient, error) {
@@ -35,4 +36,11 @@ func buildHttpPostRestClient(c configs.Client) (domain.DataRowClient, error) {
 		Timeout: time.Second * 1000,
 	}
 	return infrastructure.NewRestApi(c.Path, http.MethodPost, c.Headers, httpClient), nil
+}
+
+func buildHttpDeleteRestClient(c configs.Client) (domain.DataRowClient, error) {
+	httpClient := http.Client{
+		Timeout: time.Second * 1000,
+	}
+	return infrastructure.NewRestApi(c.Path, http.MethodDelete, c.Headers, httpClient), nil
 }
